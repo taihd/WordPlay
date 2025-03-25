@@ -6,7 +6,12 @@ from collections import defaultdict
 st.set_page_config(page_title="WordPlay - Word Guessing Game", layout="wide")
 st.title("WordPlay - Word Guessing Game")
 st.write("Find possible words from a set of letters with optional constraints.")
-
+st.info("""### How to use this app:
+1. Enter a list of letters that you want to use to form words.
+2. Select the length of the word you want to find.
+3. Optionally, add constraints by selecting which letter should be at a specific position.
+4. Click 'Find Words' to see all possible words that can be formed with your letters and constraints.""")
+st.markdown("---")
 # Load words from the file
 @st.cache_data
 def load_words():
@@ -55,11 +60,12 @@ def find_possible_words(letters, word_length, constraints):
         if matches_constraints and can_form_word(word, letters):
             possible_words.append(word)
     
-    return possible_words
+    # Return unique words only
+    return list(dict.fromkeys(possible_words))
 
 # Main app layout
 st.subheader("Step 1: Enter Letters")
-letter_input = st.text_input("Enter a list of letters (without spaces):", "abcdefghijklmnopqrstuvwxyz")
+letter_input = st.text_input("Enter a list of letters (without spaces):")
 letters = [letter.lower() for letter in letter_input if letter.isalpha()]
 
 if letters:
@@ -67,7 +73,9 @@ if letters:
     
     st.subheader("Step 2: Select Word Length")
     max_length = min(15, len(letters))  # Limit max length to 15 or the number of letters
-    word_length = st.slider("Select word length:", 2, max_length, 5)
+    # Replace slider with a selectbox
+    word_length_options = list(range(3, max_length + 1))
+    word_length = st.selectbox("Select word length:", word_length_options, index=3)  # Default to 5 (index 3 when starting from 2)
     
     st.subheader("Step 3: Add Constraints (Optional)")
     st.write("Select letters for specific positions in the word:")
@@ -78,7 +86,6 @@ if letters:
     
     for i in range(word_length):
         with cols[i % 8]:
-            st.write(f"Position {i+1}")
             letter = st.selectbox(f"Letter #{i+1}", [''] + letters, key=f"pos_{i}")
             if letter:
                 constraints[i] = letter.lower()
@@ -102,10 +109,3 @@ if letters:
 else:
     st.warning("Please enter at least one letter to start.")
 
-# Add footer with instructions
-st.markdown("---")
-st.write("### How to use this app:")
-st.write("1. Enter a list of letters that you want to use to form words.")
-st.write("2. Select the length of the word you want to find.")
-st.write("3. Optionally, add constraints by selecting which letter should be at a specific position.")
-st.write("4. Click 'Find Words' to see all possible words that can be formed with your letters and constraints.") 
