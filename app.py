@@ -152,8 +152,18 @@ if letters:
 
                 # Display words in a nice format
                 word_columns = st.columns(3)
-                for i, word in enumerate(sorted(possible_words)):
-                    word_columns[i % 3].write(f"• {word}")
+                sorted_words = sorted(possible_words)
+                
+                # Calculate number of rows needed
+                num_words = len(sorted_words)
+                rows = (num_words + 2) // 3  # Round up division
+                
+                # Fill columns vertically
+                for col in range(3):
+                    for row in range(rows):
+                        idx = row + (col * rows)
+                        if idx < num_words:
+                            word_columns[col].write(f"• {sorted_words[idx]}")
             else:
                 st.warning("No words found that match your criteria.")
 else:

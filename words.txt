@@ -66356,6 +66356,7 @@ croakiness
 croaking
 croaks
 croaky
+croc
 crocein
 croceins
 crochet
@@ -88079,6 +88080,7 @@ flybys
 flycatcher
 flycatcher's
 flycatchers
+flyer
 flying
 flying boat
 flying boats
@@ -139961,6 +139963,7 @@ plectra
 plectron
 plectrons
 plectrum
+pled
 pledge
 pledge's
 pledged
@@ -147554,6 +147557,7 @@ raconteur's
 raconteurs
 raconteuse
 raconteuses
+racoon
 racquet
 racquetball
 racquetballs
@@ -152023,6 +152027,7 @@ repliers
 replies
 reply
 replying
+repo
 repopulate
 repopulated
 repopulates
