@@ -80703,6 +80703,7 @@ entreats
 entreaty
 entrechat
 entrechats
+entree
 entremets
 entrench
 entrenched
