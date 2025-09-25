@@ -88594,6 +88594,7 @@ foppishness
 fops
 for
 for.
+fora
 forage
 foraged
 forager
